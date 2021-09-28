@@ -6,10 +6,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 class CategoryController extends Controller
 {
     function index(){
+        Schema::create('categories', function(Blueprint $table){
+            $table->id();
+            $table->string('title');
+            $table->integer('parent_id')->default(0);
+            $table->string('desc')->nullable();
+        });
         echo 'Hiển thị danh sách danh mục thuộc cateogry controller';
     }
 
