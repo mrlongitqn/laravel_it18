@@ -21,7 +21,7 @@ class PostSeeder extends Seeder
                 'intro' => Str::random('50'),
                 'image' => Str::random('10'),
                 'detail' => 'Đây là nội dung của bài viết',
-                'category_id' => rand(1, 100)
+                'category_id' => rand(103, 202)
             ]);
 
         $query = "INSERT INTO posts(title, intro, image, detail, category) VALUES ('".Str::random('30')."') ";

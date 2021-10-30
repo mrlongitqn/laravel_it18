@@ -10,8 +10,27 @@ use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
     function index(){
+        //Thuc hien lay tat ca du lieu tu bang users
+        //$users = DB::table('users')->get();
 
-        echo 'Hiển thị danh sách danh mục thuộc cateogry controller';
+      //  $users = DB::table('users')->orderBy('id','desc')->first();
+        $users = DB::table('users')->select('name','email')->get();
+        //orderBy('id','desc') sap xep
+
+      //  $users = DB::table('users')->select('name','email')->skip(20)->take(10)->get();
+      //  $users = DB::table('users')->where('email','LIKE','%4%')->select('name','email')->get();
+//      $users = DB::table('users')->where([
+//              ['email','LIKE','%4%'],
+//              ['name', 'LIKE','%g%']
+//      ])->select('name','email')->get();
+        //$users = DB::table('users')->where('email','LIKE','%4%')->where('name', 'LIKE','%g%')->select('name','email')->get();
+    //    $users = DB::table('users')->where('email','LIKE','%4%')->orWhere('name', 'LIKE','%g%')->select('name','email')->get();
+        //>skip(20)->take(10) bỏ qua bao nhiêu dữ liêu, lấy bao nhiêu dữ liệu
+
+      //  $users = DB::table('users')->select(DB::Raw('id as stt, name as ten'))->get();
+        $posts = DB::table('posts')->join('categories','posts.category_id','categories.id')
+            ->select('posts.id', 'posts.title as post_title','categories.title')->take(10)->get();
+        dd($posts);
     }
 
     function add(){
