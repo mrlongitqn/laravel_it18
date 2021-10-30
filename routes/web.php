@@ -84,6 +84,7 @@ Route::get('category', [CategoryController::class, 'index']);
 Route::get('category/them', [CategoryController::class, 'add']);
 Route::get('category/update/{id}/{parent?}', [CategoryController::class, 'update']);
 Route::get('get-data', [CategoryController::class, 'GetData']);
+Route::get('category/delete', [CategoryController::class, 'delete']);
 Route::get('lay-thong-tin', [CategoryController::class, 'GetData']);
 Route::get('set-cookie', [CategoryController::class, 'SetCookie']);
 Route::get('get-cookie', [CategoryController::class, 'GetCookie']);

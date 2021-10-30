@@ -6,30 +6,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
     function index(){
-        Schema::create('categories', function(Blueprint $table){
-            $table->id();
-            $table->string('title');
-            $table->integer('parent_id')->default(0);
-            $table->string('desc')->nullable();
-        });
+
         echo 'Hiển thị danh sách danh mục thuộc cateogry controller';
     }
 
     function add(){
-echo 'Add function';
+        DB::table('categories')->insert([
+            'title'=>'Pháp luật',
+            'parent_id'=>0,
+            'desc'=>'Chuyên mục pháp luật đời sống'
+        ]);
+//        $mysql = new \mysqli('localhost','root','','lravel');
+//        $query = "INSERT INTO categories(title, parent_id, desc) VALUES('Pháp luật',0,'Chuyên mục pháp luật đời sống')";
+//        $mysql->query($query);
     }
 
     function update($id,$parent='100'){
-        echo "Giá trị được truyền vào là, id=$id và parent = $parent";
+        DB::table('categories')->where('id',102)->update([
+            'title'=>'Sửa pháp luật'
+        ]);
+        echo 'Đã sửa thành công';
     }
 
     function delete(){
-
+        DB::table('categories')->where('id',102)->delete();
+        echo 'Đã xóa thành công';
     }
     function GetData(Request $request){
         //var_dump, die, beautiful
